@@ -1,0 +1,8 @@
+api_formatter:
+  ports:
+    - "${DEPLOY_PORT}:80"
+  environment:
+    - SERVER_PROFILE=ci
+    - FRONT_HOST=test.api_formatter.waynabox.com
+    - START_PAGE=app_test.php
+

@@ -1,0 +1,6 @@
+parameters:
+
+  database_port: 3306
+  database_name: waynabox
+  database_user: admin
+  database_password: .WaynaCorp777!

@@ -1,0 +1,12 @@
+api_formatter:
+  ports:
+    - 8083:80
+  environment:
+    - SERVER_PROFILE=dev
+    - FRONT_HOST=api_formatter.waynabox.local
+    - START_PAGE=app_dev.php
+    - PHP_IDE_CONFIG=serverName=api_formatter.waynabox.local
+    - "XDEBUG_IP=${DEBUG_IP}"
+
+
+

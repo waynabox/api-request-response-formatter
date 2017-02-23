@@ -1,0 +1,25 @@
+parameters:
+
+  locale: es
+  frontend: {front_machine_url}
+
+  mailer_transport: smtp
+  mailer_host: smtp.mandrillapp.com
+  mailer_user: dani@wayna.org
+  mailer_password: oa0fixOdFMJYuLuaXLyahg
+  mailer_port: 587
+  mailer_encryption: tls
+
+
+  database_host: waynabox-master.cfy5s4k8wdtt.eu-central-1.rds.amazonaws.com
+
+
+  database_port: 3306
+  database_name: waynabox
+  database_user: admin
+  database_password: .WaynaCorp777!
+  database_driver: pdo_mysql
+  machineid: dani
+  secret: ThisTokenIsNotSoSecretChangeIt
+  version: {release_version}
+  

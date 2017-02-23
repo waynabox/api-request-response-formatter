@@ -1,0 +1,7 @@
+appi_formatter:
+  ports:
+    - "80:80"
+  environment:
+    - SERVER_PROFILE=prod
+    - FRONT_HOST=api_formatter.waynabox.com
+    - START_PAGE=app.php

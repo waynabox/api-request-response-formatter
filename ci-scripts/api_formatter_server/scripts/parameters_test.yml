@@ -1,0 +1,17 @@
+parameters:
+
+  frontend: {front_machine_url}
+
+  mailer_password: Kt1TNGK2hDb73lBqVGL5Nw
+
+
+  database_host: waynabox-dev-20.cfy5s4k8wdtt.eu-central-1.rds.amazonaws.com
+
+  database_driver: pdo_mysql
+  machineid: dani
+  database_port: 3306
+  database_name: waynabox
+  database_user: admin
+  database_password: .WaynaCorp777!
+
+

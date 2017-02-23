@@ -1,0 +1,9 @@
+api_formatter:
+  build: ./api_formatter_server
+  container_name: api_formatter_http_server
+  volumes:
+    - "../:/var/www/current"
+    - "./logs:/var/log/nginx/"
+  environment:
+    - SERVER_PROFILE=dev
+    - FRONT_HOST=api-formatter.waynabox.local
