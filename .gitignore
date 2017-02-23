@@ -1,3 +1,4 @@
 /ci-scripts/logs/
 vendor/
 /.idea/
+composer.phar
