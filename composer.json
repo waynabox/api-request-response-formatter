@@ -1,6 +1,5 @@
 {
     "name": "waynabox/api-request-response-formatter",
-    "version" : "1.0.0"
     "description": "A library to define the request and response format of an API",
     "type": "library",
     "license": "MIT",
