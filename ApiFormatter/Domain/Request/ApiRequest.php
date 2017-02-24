@@ -7,7 +7,7 @@ abstract class ApiRequest
     /**
      * @var array
      */
-    private $requestParameters;
+    private $parameters;
 
     /**
      * ApiRequest constructor.
@@ -24,7 +24,15 @@ abstract class ApiRequest
             throw new ApiRequestBadException('The request needs a data element');
         }
 
-        $this->requestParameters = $request['data'];
+        $this->parameters = $request['data'];
+    }
+
+    /**
+     * @return array
+     */
+    public function parameters(): array 
+    {
+        return $this->parameters;
     }
 
     /**
