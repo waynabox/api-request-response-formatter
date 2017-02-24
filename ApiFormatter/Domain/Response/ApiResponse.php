@@ -50,6 +50,11 @@ class ApiResponse
         return json_encode($data);
     }
 
+    public function statusCode()
+    {
+        return $this->status->statusCode();
+    }
+
     public function addError(string $errorKey, array $errorData)
     {
         if($this->isResponseOk()) {
@@ -70,11 +75,6 @@ class ApiResponse
         }
 
         return $data;
-    }
-
-    private function statusCode()
-    {
-        return $this->status->statusCode();
     }
 
     private function apiResponseData()
