@@ -24,7 +24,7 @@ abstract class ApiRequest
             throw new ApiRequestBadException('The request needs a data element');
         }
 
-        $this->requestParameters = $request;
+        $this->requestParameters = $request['data'];
     }
 
     /**
