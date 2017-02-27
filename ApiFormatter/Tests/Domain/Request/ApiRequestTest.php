@@ -59,5 +59,6 @@ class ApiRequestTest extends TestCase
 
         $apiRequest = new ApiRequestMock($parameters);
         $this->assertInstanceOf(ApiRequest::class, $apiRequest);
+        $this->assertEquals($parameters['data'], $apiRequest->parameters());
     }
 }

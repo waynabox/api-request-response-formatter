@@ -29,7 +29,7 @@ class ApiResponseTest extends TestCase
                 $param2Name => $param2,
                 $param3Name => $param3,
             ],
-            'error' => ''
+            'error' => '{}'
         ]);
 
         $status = new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_OK_CODE);

@@ -40,7 +40,7 @@ class ApiResponse
         $data = [
             'status' => $this->statusCode(),
             'data' => $this->apiResponseData(),
-            'error' => ''
+            'error' => '{}'
         ];
 
         if(!$this->isResponseOk()) {
