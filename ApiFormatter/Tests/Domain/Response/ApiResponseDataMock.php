@@ -2,9 +2,9 @@
 
 namespace ApiFormatter\Tests\Domain\Response;
 
-use ApiFormatter\Domain\Response\ApiResponseData;
+use ApiFormatter\Domain\Response\ApiResponseDataInterface;
 
-class ApiResponseDataMock implements ApiResponseData
+class ApiResponseDataMock implements ApiResponseDataInterface
 {
     private $param1;
     private $param2;

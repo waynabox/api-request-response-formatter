@@ -1,9 +1,33 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: jairo
+ * Date: 9/03/17
+ * Time: 16:14
+ */
 
 namespace ApiFormatter\Domain\Response;
 
-
-interface ApiResponseData
+class ApiResponseData implements ApiResponseDataInterface
 {
-    public function data(): array ;
+    /** @var array  */
+    private $data;
+
+    /**
+     * ProcessingBatchResponse constructor.
+     *
+     * @param array $data
+     */
+    public function __construct(array $data = [])
+    {
+        $this->data = $data;
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->data;
+    }
 }

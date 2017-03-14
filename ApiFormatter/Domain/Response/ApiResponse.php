@@ -10,7 +10,7 @@ class ApiResponse
     private $status;
 
     /**
-     * @var ApiResponseData
+     * @var ApiResponseDataInterface
      */
     private $apiResponseData;
 
@@ -24,7 +24,7 @@ class ApiResponse
      */
     private $errorList = [];
 
-    public function __construct(ApiResponseStatus $status, ApiResponseData $data, string $mainErrorMessage)
+    public function __construct(ApiResponseStatus $status, ApiResponseDataInterface $data, string $mainErrorMessage)
     {
         $this->status = $status;
         $this->apiResponseData = $data;
