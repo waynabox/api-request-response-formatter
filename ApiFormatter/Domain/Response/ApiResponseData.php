@@ -10,23 +10,23 @@ namespace ApiFormatter\Domain\Response;
 
 class ApiResponseData implements ApiResponseDataInterface
 {
-    /** @var array  */
+    /** @var mixed */
     private $data;
 
     /**
      * ProcessingBatchResponse constructor.
      *
-     * @param array $data
+     * @param mixed $data
      */
-    public function __construct(array $data = [])
+    public function __construct($data = [])
     {
         $this->data = $data;
     }
 
     /**
-     * @return array
+     * @return mixed
      */
-    public function data(): array
+    public function data()
     {
         return $this->data;
     }

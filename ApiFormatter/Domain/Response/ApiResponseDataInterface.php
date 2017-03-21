@@ -5,5 +5,5 @@ namespace ApiFormatter\Domain\Response;
 
 interface ApiResponseDataInterface
 {
-    public function data(): array ;
+    public function data() ;
 }

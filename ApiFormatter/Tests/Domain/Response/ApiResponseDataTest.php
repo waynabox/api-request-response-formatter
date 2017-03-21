@@ -27,4 +27,16 @@ class ApiResponseDataTest extends TestCase
 
 
     }
+
+    public function testWithJsonAsDataWorksFine(){
+        /** arrange */
+        $data = [
+            'param1' => 'value 1',
+            'param2' => 'value 2'
+        ];
+        /** act */
+        $apiResponseData = new ApiResponseData(json_encode($data));
+        /** assert */
+        $this->assertEquals(json_encode($data), $apiResponseData->data());
+    }
 }

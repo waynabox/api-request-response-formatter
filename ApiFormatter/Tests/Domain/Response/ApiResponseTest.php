@@ -3,6 +3,7 @@
 namespace ApiFormatter\Tests\Domain\Response;
 
 use ApiFormatter\Domain\Response\ApiResponse;
+use ApiFormatter\Domain\Response\ApiResponseData;
 use ApiFormatter\Domain\Response\ApiResponseWithErrorWhenNoErrorStatus;
 use ApiFormatter\Domain\Response\BasicApiResponseStatus;
 use PHPUnit\Framework\TestCase;
@@ -38,6 +39,27 @@ class ApiResponseTest extends TestCase
         $this->assertEquals($jsonResponse, $response->json());
     }
 
+    public function testApiResponseOKStatusWithJsonDataInsteadArray()
+    {
+        $data = [
+            'param_test_data_1' => 'value_test_data_1',
+            'param_test_data_2' => 'value_test_data_2',
+            'param_test_data_3' => 'value_test_data_3'
+        ];
+        $apìResponseData = new ApiResponseData(json_encode($data));
+
+        $mainErrorMessage = '';
+        $jsonResponse = json_encode([
+            'status' => BasicApiResponseStatus::STATUS_OK_CODE,
+            'data' => $data,
+            'error' => '{}'
+        ]);
+
+        $status = new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_OK_CODE);
+        $response = new ApiResponse($status, $apìResponseData, $mainErrorMessage);
+
+        $this->assertEquals($jsonResponse, $response->json());
+    }
 
     public function testApiResponseOKStatusWithMainErrorMessageLaunchAnException()
     {

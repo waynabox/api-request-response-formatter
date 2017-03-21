@@ -7,3 +7,6 @@
 
 ## [1.0.3]
 * Json output formatter for API responses
+
+## [1.0.4]
+* Allow multiple response types (array, string)

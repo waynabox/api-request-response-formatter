@@ -30,20 +30,24 @@ class ApiResponse
         $this->apiResponseData = $data;
         $this->mainErrorMessage = $mainErrorMessage;
 
-        if($this->isResponseOk() && !empty($mainErrorMessage)) {
+        if ($this->isResponseOk() && !empty($mainErrorMessage)) {
             throw new ApiResponseWithErrorWhenNoErrorStatus();
         }
     }
 
     public function json()
     {
+        $responseData = $this->apiResponseData();
+        if (!is_array($responseData) && $this->isJson($responseData)) {
+            $responseData = json_decode($responseData);
+        }
         $data = [
             'status' => $this->statusCode(),
-            'data' => $this->apiResponseData(),
+            'data' => $responseData,
             'error' => '{}'
         ];
 
-        if(!$this->isResponseOk()) {
+        if (!$this->isResponseOk()) {
             $data = $this->addErrorsToResponse($data);
         }
 
@@ -57,7 +61,7 @@ class ApiResponse
 
     public function addError(string $errorKey, array $errorData)
     {
-        if($this->isResponseOk()) {
+        if ($this->isResponseOk()) {
             throw new ApiResponseWithErrorWhenNoErrorStatus();
         }
 
@@ -85,5 +89,11 @@ class ApiResponse
     private function isResponseOk()
     {
         return $this->status->isResponseStatusOK();
+    }
+
+    private function isJson($string)
+    {
+        json_decode($string);
+        return (json_last_error() == JSON_ERROR_NONE);
     }
 }
