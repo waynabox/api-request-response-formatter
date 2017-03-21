@@ -10,3 +10,6 @@
 
 ## [1.0.4]
 * Allow multiple response types (array, string)
+
+## [1.0.5]
+* Allow multiple response types on response factory
