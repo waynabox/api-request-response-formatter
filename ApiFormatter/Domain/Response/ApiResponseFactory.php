@@ -11,10 +11,10 @@ namespace ApiFormatter\Domain\Response;
 class ApiResponseFactory
 {
     /**
-     * @param array $responseData
+     * @param mixed $responseData
      * @return ApiResponse
      */
-    public static function buildAcceptedResponse(array $responseData): ApiResponse
+    public static function buildAcceptedResponse($responseData): ApiResponse
     {
         return new ApiResponse(
             new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_OK_CODE),
