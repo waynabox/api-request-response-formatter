@@ -14,5 +14,16 @@ A bundle of tools to handle Waynabox API request and responses.
     } catch (\Exception $e) {
         return $this->sendResponse(ApiResponseFactory::buildBadRequestResponse($e->getMessage()));
     }
+    
+    /**
+     * @param ApiResponse $apiResponse
+     *
+     * @return Response
+     */
+    private function sendResponse(ApiResponse $apiResponse): Response
+    {
+        $outputFormatter = new JsonOutputFormatter();
+        return $outputFormatter->format(new OutputFormatterRequest($apiResponse->statusCode(), $apiResponse->json()));
+    }    
 }
 ```
