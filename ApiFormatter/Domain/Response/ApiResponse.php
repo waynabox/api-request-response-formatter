@@ -44,7 +44,7 @@ class ApiResponse
         $data = [
             'status' => $this->statusCode(),
             'data' => $responseData,
-            'error' => '{}'
+            'error' => new \stdClass()
         ];
 
         if (!$this->isResponseOk()) {

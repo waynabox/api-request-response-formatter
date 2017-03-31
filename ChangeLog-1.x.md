@@ -13,3 +13,9 @@
 
 ## [1.0.5]
 * Allow multiple response types on response factory
+
+## [1.0.6]
+* Return in field error empty jsonObject
+
+## [1.0.7]
+* Return in field error empty jsonObject
