@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jairo
- * Date: 14/03/17
- * Time: 12:02
- */
 
 namespace ApiFormatter\Tests\Domain\Response;
 
@@ -20,10 +14,10 @@ class ApiResponseFactoryTest extends TestCase
     public function testFactoryReturnsAcceptedResponse()
     {
         /** arrange */
-        $data = [
+        $data = json_encode([
             'param 1' => 'value 1',
             'param 2' => 'value 2'
-        ];
+        ]);
 
         /** act */
         $response = ApiResponseFactory::buildAcceptedResponse($data);

@@ -3,6 +3,7 @@
 namespace ApiFormatter\Domain\OutputFormatter;
 
 
+use ApiFormatter\Infrastructure\OutputFormatter\JsonEncodedOutputFormatter;
 use ApiFormatter\Infrastructure\OutputFormatter\JsonOutputFormatter;
 use ApiFormatter\Infrastructure\OutputFormatter\PdfBinaryOutputFormatter;
 use ApiFormatter\Infrastructure\OutputFormatter\PlaintextOutputFormatter;
@@ -18,6 +19,8 @@ class OutputFormatterFactory
                 return new JsonOutputFormatter();
             case OutputFormat::BINARY_PDF:
                 return new PdfBinaryOutputFormatter();
+            case OutputFormat::JSON_ENCODED:
+                return new JsonEncodedOutputFormatter();
             default:
                 throw new \Exception("Not implemented on factory yet");
         }

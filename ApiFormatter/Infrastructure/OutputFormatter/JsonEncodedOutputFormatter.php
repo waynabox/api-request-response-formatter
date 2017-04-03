@@ -16,15 +16,16 @@ class JsonEncodedOutputFormatter implements OutputFormatterInterface
     {
 
         $data = $request->additionalData();
+        $output = $request->output();
+        if (empty($output)) {
+            $output = '[]';
+        }
         $jsonResponse = [];
         $jsonResponse['status'] = $data['status'];
-        $jsonResponse['data'] = json_decode($request->output());
+        $jsonResponse['data'] = json_decode($output);
         $jsonResponse['error'] = $data['error'];
 
         header('Content-type: json');
         return json_encode($jsonResponse);
     }
-}
-{
-
 }

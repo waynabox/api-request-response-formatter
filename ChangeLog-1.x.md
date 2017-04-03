@@ -1,4 +1,6 @@
 # Changes in Waynabox Api Formatter 1.x.x
+## [1.1.2]
+* fixes and unit testing
 
 ## [1.1.1]
 * Readme updated to comment new specifications and how-to
