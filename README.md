@@ -33,7 +33,8 @@ This option will add additional data on json response for status and error respo
 ```php
 $data = ['param1' => 'value 1', 'param2' => 'value 2'];
 return ApiResponseFactory::buildAcceptedResponse(
-            $data
+            $data,
+            OutputFormat::JSON
         )->output();
 //outputs '{"status":200,"data":{"param1":"value 1","param2":"value 2"},"error":{}}'
 ```
