@@ -4,30 +4,21 @@ namespace ApiFormatter\Domain\OutputFormatter;
 
 class OutputFormatterRequest
 {
-    /** @var string  */
-    private $statusCode;
-
-    /** @var mixed  */
+    /** @var mixed */
     private $output;
 
-    /**
-     * JsonOutputFormatterRequest constructor.
-     *
-     * @param string $statusCode
-     * @param mixed $output
-     */
-    public function __construct(string $statusCode, $output)
-    {
-        $this->statusCode = $statusCode;
-        $this->output = $output;
-    }
+    /** @var mixed */
+    private $additionalData;
 
     /**
-     * @return string
+     * OutputFormatterRequest constructor.
+     * @param mixed $output
+     * @param mixed $additionalData
      */
-    public function statusCode(): string
+    public function __construct($output, $additionalData = array())
     {
-        return $this->statusCode;
+        $this->output = $output;
+        $this->additionalData = $additionalData;
     }
 
     /**
@@ -38,5 +29,11 @@ class OutputFormatterRequest
         return $this->output;
     }
 
-
+    /**
+     * @return mixed
+     */
+    public function additionalData()
+    {
+        return $this->additionalData;
+    }
 }

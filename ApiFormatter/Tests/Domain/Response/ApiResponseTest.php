@@ -2,6 +2,8 @@
 
 namespace ApiFormatter\Tests\Domain\Response;
 
+use ApiFormatter\Domain\OutputFormatter\OutputFormat;
+use ApiFormatter\Domain\OutputFormatter\OutputFormatterFactory;
 use ApiFormatter\Domain\Response\ApiResponse;
 use ApiFormatter\Domain\Response\ApiResponseData;
 use ApiFormatter\Domain\Response\ApiResponseWithErrorWhenNoErrorStatus;
@@ -10,6 +12,9 @@ use PHPUnit\Framework\TestCase;
 
 class ApiResponseTest extends TestCase
 {
+    /**
+     * @runInSeparateProcess
+     */
     public function testApiResponseOKStatus()
     {
         $param1Name = 'param1';
@@ -30,35 +35,14 @@ class ApiResponseTest extends TestCase
                 $param2Name => $param2,
                 $param3Name => $param3,
             ],
-            'error' => '{}'
+            'error' => new \StdClass()
         ]);
 
         $status = new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_OK_CODE);
-        $response = new ApiResponse($status, $data, $mainErrorMessage);
+        $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::JSON));
+        $response = new ApiResponse($status, $data, $mainErrorMessage, $formatter);
 
-        $this->assertEquals($jsonResponse, $response->json());
-    }
-
-    public function testApiResponseOKStatusWithJsonDataInsteadArray()
-    {
-        $data = [
-            'param_test_data_1' => 'value_test_data_1',
-            'param_test_data_2' => 'value_test_data_2',
-            'param_test_data_3' => 'value_test_data_3'
-        ];
-        $apìResponseData = new ApiResponseData(json_encode($data));
-
-        $mainErrorMessage = '';
-        $jsonResponse = json_encode([
-            'status' => BasicApiResponseStatus::STATUS_OK_CODE,
-            'data' => $data,
-            'error' => '{}'
-        ]);
-
-        $status = new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_OK_CODE);
-        $response = new ApiResponse($status, $apìResponseData, $mainErrorMessage);
-
-        $this->assertEquals($jsonResponse, $response->json());
+        $this->assertEquals($jsonResponse, $response->output());
     }
 
     public function testApiResponseOKStatusWithMainErrorMessageLaunchAnException()
@@ -73,9 +57,13 @@ class ApiResponseTest extends TestCase
         $mainErrorMessage = 'A message that should not be';
 
         $status = new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_OK_CODE);
-        new ApiResponse($status, $data, $mainErrorMessage);
+        $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::JSON));
+        new ApiResponse($status, $data, $mainErrorMessage, $formatter);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testApiResponseBadRequestStatusOnlyMainError()
     {
         $param1Name = 'param1';
@@ -102,11 +90,15 @@ class ApiResponseTest extends TestCase
         ]);
 
         $status = new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE);
-        $response = new ApiResponse($status, $data, $mainErrorMessage);
+        $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::JSON));
+        $response = new ApiResponse($status, $data, $mainErrorMessage, $formatter);
 
-        $this->assertEquals($jsonResponse, $response->json());
+        $this->assertEquals($jsonResponse, $response->output());
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testApiResponseBadRequestStatusWithMultipleErrors()
     {
         $param1Name = 'param1';
@@ -146,11 +138,12 @@ class ApiResponseTest extends TestCase
         ]);
 
         $status = new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE);
-        $response = new ApiResponse($status, $data, $mainErrorMessage);
+        $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::JSON));
+        $response = new ApiResponse($status, $data, $mainErrorMessage, $formatter);
         $response->addError($error1Name, $error1);
         $response->addError($error2Name, $error2);
 
-        $this->assertEquals($jsonResponse, $response->json());
+        $this->assertEquals($jsonResponse, $response->output());
     }
 
     public function testApiResponseOkStatusWithMainErrorMessageLaunchException()
@@ -170,7 +163,8 @@ class ApiResponseTest extends TestCase
         ];
 
         $status = new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_OK_CODE);
-        $response = new ApiResponse($status, $data, $mainErrorMessage);
+        $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::JSON));
+        $response = new ApiResponse($status, $data, $mainErrorMessage, $formatter);
         $response->addError($error1Name, $error1);
     }
 
@@ -191,7 +185,8 @@ class ApiResponseTest extends TestCase
         ];
 
         $status = new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_OK_CODE);
-        $response = new ApiResponse($status, $data, $mainErrorMessage);
+        $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::JSON));
+        $response = new ApiResponse($status, $data, $mainErrorMessage, $formatter);
         $response->addError($error1Name, $error1);
     }
 }

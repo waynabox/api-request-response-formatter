@@ -14,6 +14,9 @@ use PHPUnit\Framework\TestCase;
 
 class ApiResponseFactoryTest extends TestCase
 {
+    /**
+     * @runInSeparateProcess
+     */
     public function testFactoryReturnsAcceptedResponse()
     {
         /** arrange */
@@ -27,9 +30,13 @@ class ApiResponseFactoryTest extends TestCase
 
         /** assert */
         $this->assertEquals(BasicApiResponseStatus::STATUS_OK_CODE, $response->statusCode());
-        $this->assertEquals('{"status":200,"data":{"param 1":"value 1","param 2":"value 2"},"error":"{}"}', $response->json());
+        $this->assertEquals('{"status":200,"data":{"param 1":"value 1","param 2":"value 2"},"error":{}}',
+            $response->output());
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testFactoryReturnsAuthenticationFailedResponse()
     {
         /** act */
@@ -37,9 +44,12 @@ class ApiResponseFactoryTest extends TestCase
 
         /** assert */
         $this->assertEquals(BasicApiResponseStatus::STATUS_UNAUTHENTICATED_CODE, $response->statusCode());
-        $this->assertEquals('{"status":401,"data":[],"error":{"message":"bad password"}}', $response->json());
+        $this->assertEquals('{"status":401,"data":[],"error":{"message":"bad password"}}', $response->output());
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testFactoryReturnsBadRequestResponse()
     {
         /** act */
@@ -47,6 +57,6 @@ class ApiResponseFactoryTest extends TestCase
 
         /** assert */
         $this->assertEquals(BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE, $response->statusCode());
-        $this->assertEquals('{"status":400,"data":[],"error":{"message":"messy requested data"}}', $response->json());
+        $this->assertEquals('{"status":400,"data":[],"error":{"message":"messy requested data"}}', $response->output());
     }
 }

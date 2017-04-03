@@ -26,11 +26,11 @@ class ApiResponseStatusTest extends TestCase
     public function statusDataProvider()
     {
         return [
-            [ BasicApiResponseStatus::STATUS_OK_CODE ],
-            [ BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE ],
-            [ BasicApiResponseStatus::STATUS_UNAUTHENTICATED_CODE ],
-            [ BasicApiResponseStatus::STATUS_UNAUTHORIZED_CODE ],
-            [ BasicApiResponseStatus::STATUS_SERVER_ERROR_CODE ],
+            [BasicApiResponseStatus::STATUS_OK_CODE],
+            [BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE],
+            [BasicApiResponseStatus::STATUS_UNAUTHENTICATED_CODE],
+            [BasicApiResponseStatus::STATUS_UNAUTHORIZED_CODE],
+            [BasicApiResponseStatus::STATUS_SERVER_ERROR_CODE],
         ];
     }
 }

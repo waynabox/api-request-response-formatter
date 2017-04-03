@@ -28,7 +28,8 @@ class ApiResponseDataTest extends TestCase
 
     }
 
-    public function testWithJsonAsDataWorksFine(){
+    public function testWithJsonAsDataWorksFine()
+    {
         /** arrange */
         $data = [
             'param1' => 'value 1',

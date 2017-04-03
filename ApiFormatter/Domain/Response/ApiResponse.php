@@ -2,6 +2,9 @@
 
 namespace ApiFormatter\Domain\Response;
 
+use ApiFormatter\Domain\OutputFormatter\OutputFormatterInterface;
+use ApiFormatter\Domain\OutputFormatter\OutputFormatterRequest;
+
 class ApiResponse
 {
     /**
@@ -24,41 +27,61 @@ class ApiResponse
      */
     private $errorList = [];
 
-    public function __construct(ApiResponseStatus $status, ApiResponseDataInterface $data, string $mainErrorMessage)
-    {
+    /**
+     * @var OutputFormatterInterface
+     */
+    private $outputFormatter;
+
+    /**
+     * ApiResponse constructor.
+     * @param ApiResponseStatus $status
+     * @param ApiResponseDataInterface $data
+     * @param string $mainErrorMessage
+     * @param OutputFormatterInterface $outputFormatter
+     * @throws ApiResponseWithErrorWhenNoErrorStatus
+     */
+    public function __construct(
+        ApiResponseStatus $status,
+        ApiResponseDataInterface $data,
+        string $mainErrorMessage,
+        OutputFormatterInterface $outputFormatter
+    ) {
         $this->status = $status;
         $this->apiResponseData = $data;
         $this->mainErrorMessage = $mainErrorMessage;
+        $this->outputFormatter = $outputFormatter;
 
         if ($this->isResponseOk() && !empty($mainErrorMessage)) {
             throw new ApiResponseWithErrorWhenNoErrorStatus();
         }
     }
 
-    public function json()
+    /**
+     * @return mixed
+     */
+    public function output()
     {
-        $responseData = $this->apiResponseData();
-        if (!is_array($responseData) && $this->isJson($responseData)) {
-            $responseData = json_decode($responseData);
-        }
-        $data = [
-            'status' => $this->statusCode(),
-            'data' => $responseData,
-            'error' => new \stdClass()
-        ];
-
-        if (!$this->isResponseOk()) {
-            $data = $this->addErrorsToResponse($data);
-        }
-
-        return json_encode($data);
+        return $this->outputFormatter->format(
+            new OutputFormatterRequest(
+                $this->apiResponseData(),
+                $this->prepareAdditionalData()
+            )
+        );
     }
 
+    /**
+     * @return mixed
+     */
     public function statusCode()
     {
         return $this->status->statusCode();
     }
 
+    /**
+     * @param string $errorKey
+     * @param array $errorData
+     * @throws ApiResponseWithErrorWhenNoErrorStatus
+     */
     public function addError(string $errorKey, array $errorData)
     {
         if ($this->isResponseOk()) {
@@ -68,6 +91,25 @@ class ApiResponse
         $this->errorList[$errorKey] = $errorData;
     }
 
+    /**
+     * @return array
+     */
+    private function prepareAdditionalData()
+    {
+        $additionalData = [
+            'status' => $this->statusCode(),
+            'error' => new \stdClass()
+        ];
+        if (!$this->isResponseOk()) {
+            $additionalData = $this->addErrorsToResponse($additionalData);
+        }
+        return $additionalData;
+    }
+
+    /**
+     * @param $data
+     * @return array
+     */
     private function addErrorsToResponse($data): array
     {
         $data ['error'] = [
@@ -81,19 +123,19 @@ class ApiResponse
         return $data;
     }
 
+    /**
+     * @return mixed
+     */
     private function apiResponseData()
     {
         return $this->apiResponseData->data();
     }
 
+    /**
+     * @return bool
+     */
     private function isResponseOk()
     {
         return $this->status->isResponseStatusOK();
-    }
-
-    private function isJson($string)
-    {
-        json_decode($string);
-        return (json_last_error() == JSON_ERROR_NONE);
     }
 }

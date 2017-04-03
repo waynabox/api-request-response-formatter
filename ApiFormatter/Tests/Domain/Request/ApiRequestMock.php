@@ -13,7 +13,7 @@ class ApiRequestMock extends ApiRequest
      */
     protected function validateApiRequestParameters(array $parameters): bool
     {
-        if(!isset($parameters['goodTest'])) {
+        if (!isset($parameters['goodTest'])) {
             return false;
         }
 
