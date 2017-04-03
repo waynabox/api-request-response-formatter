@@ -13,7 +13,8 @@ class OutputFormatTest extends TestCase
         $expectedAllowed = [
             OutputFormat::PLAIN_TEXT,
             OutputFormat::JSON,
-            OutputFormat::BINARY_PDF
+            OutputFormat::BINARY_PDF,
+            OutputFormat::JSON_ENCODED
         ];
         $this->assertEquals($expectedAllowed, OutputFormat::ALLOWED);
     }

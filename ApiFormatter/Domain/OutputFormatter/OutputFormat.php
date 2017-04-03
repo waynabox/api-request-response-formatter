@@ -9,11 +9,13 @@ class OutputFormat
     const PLAIN_TEXT = 1;
     const JSON = 2;
     const BINARY_PDF = 3;
+    const JSON_ENCODED = 4;
 
     const ALLOWED = [
         self::PLAIN_TEXT,
         self::JSON,
-        self::BINARY_PDF
+        self::BINARY_PDF,
+        self::JSON_ENCODED
     ];
 
     /**

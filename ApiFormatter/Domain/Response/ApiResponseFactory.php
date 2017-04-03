@@ -1,15 +1,10 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: jairo
- * Date: 9/03/17
- * Time: 15:58
- */
 namespace ApiFormatter\Domain\Response;
 
 use ApiFormatter\Domain\OutputFormatter\OutputFormat;
 use ApiFormatter\Domain\OutputFormatter\OutputFormatterFactory;
+use ApiFormatter\Domain\OutputFormatter\OutputFormatterInterface;
 
 class ApiResponseFactory
 {
@@ -20,7 +15,7 @@ class ApiResponseFactory
      */
     public static function buildAcceptedResponse(
         $responseData,
-        $formatType = OutputFormat::JSON
+        $formatType = OutputFormat::JSON_ENCODED
     ): ApiResponse {
         return new ApiResponse(
             new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_OK_CODE),
@@ -37,7 +32,7 @@ class ApiResponseFactory
      */
     public static function buildAuthenticationFailedResponse(
         string $errorMessage,
-        $formatType = OutputFormat::JSON
+        $formatType = OutputFormat::JSON_ENCODED
     ): ApiResponse {
         return new ApiResponse(
             new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_UNAUTHENTICATED_CODE),
@@ -54,7 +49,7 @@ class ApiResponseFactory
      */
     public static function buildBadRequestResponse(
         string $errorMessage,
-        $formatType = OutputFormat::JSON
+        $formatType = OutputFormat::JSON_ENCODED
     ): ApiResponse {
         return new ApiResponse(
             new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE),
@@ -66,7 +61,7 @@ class ApiResponseFactory
 
     /**
      * @param $formatType
-     * @return \ApiFormatter\Domain\OutputFormatter\PdfBinaryOutputFormatter|\ApiFormatter\Domain\OutputFormatter\JsonOutputFormatter
+     * @return OutputFormatterInterface
      */
     private static function buildOutputFormatter($formatType)
     {

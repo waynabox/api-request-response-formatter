@@ -1,10 +1,16 @@
 # Changes in Waynabox Api Formatter 1.x.x
 
+## [1.1.1]
+* Readme updated to comment new specifications and how-to
+* Accurated code comments
+* new output format type (json encoded) and specified as default value
+* Added Waynabox initial namespace
+
 ## [1.1.0]
 * Agnostic output formatter removing use of symfony components
 * Output formatter behaviour integrated on ApiResponse Class
 * Improving layer architecture separating domain logic and infrastructure logic
-* Unit testing improved with mocking
+* Some unit testing improved with mocking
 * 3 types of output, plain text, json, pdf
 
 ## [1.0.7]
