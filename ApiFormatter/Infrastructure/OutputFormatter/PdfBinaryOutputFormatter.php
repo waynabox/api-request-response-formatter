@@ -1,11 +1,11 @@
 <?php
 
-namespace ApiFormatter\Infrastructure\OutputFormatter;
+namespace Waynabox\ApiFormatter\Infrastructure\OutputFormatter;
 
-use ApiFormatter\Domain\OutputFormatter\OutputFormatterInterface;
-use ApiFormatter\Domain\OutputFormatter\OutputFormatterRequest;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormatterInterface;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormatterRequest;
 
-class PdfBinaryOutputFormatter implements OutputFormatterInterface
+class PdfBinaryOutputFormatter extends AbstractOutputFormatter implements OutputFormatterInterface
 {
     /**
      * @param OutputFormatterRequest $request
@@ -14,11 +14,17 @@ class PdfBinaryOutputFormatter implements OutputFormatterInterface
      */
     public function format(OutputFormatterRequest $request): string
     {
-        header('Content-type: application/pdf');
-        return (string) $request->output();
+        return $this->createResponse(
+            $request->statusCode(),
+            (string)$request->output()
+        );
+    }
+
+    /**
+     * @return string
+     */
+    protected function getContentType(): string
+    {
+        return 'application/pdf';
     }
 }
-
-    {
-
-    }

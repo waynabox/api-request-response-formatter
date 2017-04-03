@@ -1,20 +1,16 @@
 <?php
 
-namespace ApiFormatter\Tests\Domain\Response;
+namespace Waynabox\ApiFormatter\Tests\Domain\Response;
 
-use ApiFormatter\Domain\OutputFormatter\OutputFormat;
-use ApiFormatter\Domain\OutputFormatter\OutputFormatterFactory;
-use ApiFormatter\Domain\Response\ApiResponse;
-use ApiFormatter\Domain\Response\ApiResponseData;
-use ApiFormatter\Domain\Response\ApiResponseWithErrorWhenNoErrorStatus;
-use ApiFormatter\Domain\Response\BasicApiResponseStatus;
 use PHPUnit\Framework\TestCase;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormat;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormatterFactory;
+use Waynabox\ApiFormatter\Domain\Response\ApiResponse;
+use Waynabox\ApiFormatter\Domain\Response\ApiResponseWithErrorWhenNoErrorStatus;
+use Waynabox\ApiFormatter\Domain\Response\BasicApiResponseStatus;
 
 class ApiResponseTest extends TestCase
 {
-    /**
-     * @runInSeparateProcess
-     */
     public function testApiResponseOKStatus()
     {
         $param1Name = 'param1';
@@ -42,7 +38,7 @@ class ApiResponseTest extends TestCase
         $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::JSON));
         $response = new ApiResponse($status, $data, $mainErrorMessage, $formatter);
 
-        $this->assertEquals($jsonResponse, $response->output());
+        $this->assertContains($jsonResponse, $response->output());
     }
 
     public function testApiResponseOKStatusWithMainErrorMessageLaunchAnException()
@@ -61,9 +57,6 @@ class ApiResponseTest extends TestCase
         new ApiResponse($status, $data, $mainErrorMessage, $formatter);
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testApiResponseBadRequestStatusOnlyMainError()
     {
         $param1Name = 'param1';
@@ -77,28 +70,15 @@ class ApiResponseTest extends TestCase
         $data = new ApiResponseDataMock($param1, $param2, $param3);
 
         $mainErrorMessage = 'Bad paramenters request';
-        $jsonResponse = json_encode([
-            'status' => BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE,
-            'data' => [
-                $param1Name => $param1,
-                $param2Name => $param2,
-                $param3Name => $param3,
-            ],
-            'error' => [
-                'message' => $mainErrorMessage,
-            ]
-        ]);
+        $jsonResponse = '{"status":400,"data":{"param1":"test_data_1","param2":{"test_data_2":"test_data_2"},"paramN":"test_data_3"},"error":{"message":"Bad paramenters request"}}';
 
         $status = new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE);
         $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::JSON));
         $response = new ApiResponse($status, $data, $mainErrorMessage, $formatter);
 
-        $this->assertEquals($jsonResponse, $response->output());
+        $this->assertContains($jsonResponse, $response->output());
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testApiResponseBadRequestStatusWithMultipleErrors()
     {
         $param1Name = 'param1';
@@ -121,21 +101,7 @@ class ApiResponseTest extends TestCase
         $error2 = [
             'error_message' => 'message'
         ];
-        $jsonResponse = json_encode([
-            'status' => BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE,
-            'data' => [
-                $param1Name => $param1,
-                $param2Name => $param2,
-                $param3Name => $param3,
-            ],
-            'error' => [
-                'message' => $mainErrorMessage,
-                'errors' => [
-                    $error1Name => $error1,
-                    $error2Name => $error2
-                ]
-            ]
-        ]);
+        $jsonResponse = '{"status":400,"data":{"param1":"test_data_1","param2":{"test_data_2":"test_data_2"},"paramN":"test_data_3"},"error":{"message":"Bad parameters request","errors":{"error1":{"error_field":"field","error_message":"message"},"error2":{"error_message":"message"}}}}';
 
         $status = new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE);
         $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::JSON));
@@ -143,7 +109,7 @@ class ApiResponseTest extends TestCase
         $response->addError($error1Name, $error1);
         $response->addError($error2Name, $error2);
 
-        $this->assertEquals($jsonResponse, $response->output());
+        $this->assertContains($jsonResponse, $response->output());
     }
 
     public function testApiResponseOkStatusWithMainErrorMessageLaunchException()

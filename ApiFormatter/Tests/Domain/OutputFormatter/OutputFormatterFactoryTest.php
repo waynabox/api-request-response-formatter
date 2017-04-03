@@ -1,12 +1,12 @@
 <?php
 
-namespace ApiFormatter\Tests\Domain\OutputFormatter;
+namespace Waynabox\ApiFormatter\Tests\Domain\OutputFormatter;
 
-use ApiFormatter\Infrastructure\OutputFormatter\PdfBinaryOutputFormatter;
-use ApiFormatter\Infrastructure\OutputFormatter\JsonOutputFormatter;
-use ApiFormatter\Domain\OutputFormatter\OutputFormat;
-use ApiFormatter\Domain\OutputFormatter\OutputFormatterFactory;
-use ApiFormatter\Infrastructure\OutputFormatter\PlaintextOutputFormatter;
+use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\PdfBinaryOutputFormatter;
+use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\JsonOutputFormatter;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormat;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormatterFactory;
+use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\PlaintextOutputFormatter;
 use PHPUnit\Framework\TestCase;
 
 

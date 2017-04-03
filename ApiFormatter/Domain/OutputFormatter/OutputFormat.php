@@ -1,8 +1,8 @@
 <?php
 
-namespace ApiFormatter\Domain\OutputFormatter;
+namespace Waynabox\ApiFormatter\Domain\OutputFormatter;
 
-use ApiFormatter\Domain\OutputFormatter\Exception\FormatTypeNotAllowedException;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\Exception\FormatTypeNotAllowedException;
 
 class OutputFormat
 {

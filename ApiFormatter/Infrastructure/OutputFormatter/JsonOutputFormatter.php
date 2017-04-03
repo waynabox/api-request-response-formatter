@@ -1,11 +1,11 @@
 <?php
 
-namespace ApiFormatter\Infrastructure\OutputFormatter;
+namespace Waynabox\ApiFormatter\Infrastructure\OutputFormatter;
 
-use ApiFormatter\Domain\OutputFormatter\OutputFormatterInterface;
-use ApiFormatter\Domain\OutputFormatter\OutputFormatterRequest;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormatterInterface;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormatterRequest;
 
-class JsonOutputFormatter implements OutputFormatterInterface
+class JsonOutputFormatter extends AbstractOutputFormatter implements OutputFormatterInterface
 {
     /**
      * @param OutputFormatterRequest $request
@@ -14,14 +14,29 @@ class JsonOutputFormatter implements OutputFormatterInterface
      */
     public function format(OutputFormatterRequest $request): string
     {
+        $data = $this->prepareData($request);
+        return $this->createResponse($request->statusCode(), $data);
 
-        $data = $request->additionalData();
+    }
+
+    /**
+     * @param OutputFormatterRequest $request
+     * @return string
+     */
+    private function prepareData(OutputFormatterRequest $request): string
+    {
         $jsonResponse = [];
-        $jsonResponse['status'] = $data['status'];
+        $jsonResponse['status'] = $request->statusCode();
         $jsonResponse['data'] = $request->output();
-        $jsonResponse['error'] = $data['error'];
-
-        header('Content-type: json');
+        $jsonResponse['error'] = $request->error();
         return json_encode($jsonResponse);
+    }
+
+    /**
+     * @return string
+     */
+    protected function getContentType(): string
+    {
+        return 'application/json';
     }
 }

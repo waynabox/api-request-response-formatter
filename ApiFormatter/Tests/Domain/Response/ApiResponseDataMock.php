@@ -1,8 +1,8 @@
 <?php
 
-namespace ApiFormatter\Tests\Domain\Response;
+namespace Waynabox\ApiFormatter\Tests\Domain\Response;
 
-use ApiFormatter\Domain\Response\ApiResponseDataInterface;
+use Waynabox\ApiFormatter\Domain\Response\ApiResponseDataInterface;
 
 class ApiResponseDataMock implements ApiResponseDataInterface
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace ApiFormatter\Domain\Response;
+namespace Waynabox\ApiFormatter\Domain\Response;
 
-use ApiFormatter\Domain\OutputFormatter\OutputFormat;
-use ApiFormatter\Domain\OutputFormatter\OutputFormatterFactory;
-use ApiFormatter\Domain\OutputFormatter\OutputFormatterInterface;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormat;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormatterFactory;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormatterInterface;
 
 class ApiResponseFactory
 {

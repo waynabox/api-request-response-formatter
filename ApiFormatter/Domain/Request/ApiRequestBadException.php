@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiFormatter\Domain\Request;
+namespace Waynabox\ApiFormatter\Domain\Request;
 
 class ApiRequestBadException extends \Exception
 {

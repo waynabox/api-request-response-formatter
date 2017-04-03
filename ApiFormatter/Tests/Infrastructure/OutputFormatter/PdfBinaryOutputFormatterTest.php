@@ -1,16 +1,13 @@
 <?php
 
-namespace ApiFormatter\Tests\Infrastructure\OutputFormatter;
+namespace Waynabox\ApiFormatter\Tests\Infrastructure\OutputFormatter;
 
-use ApiFormatter\Infrastructure\OutputFormatter\PdfBinaryOutputFormatter;
-use ApiFormatter\Domain\OutputFormatter\OutputFormatterRequest;
+use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\PdfBinaryOutputFormatter;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormatterRequest;
 use PHPUnit\Framework\TestCase;
 
 class PdfBinaryOutputFormatterTest extends TestCase
 {
-    /**
-     * @runInSeparateProcess
-     */
     public function testFormatterOutputsTheProperFormattedData()
     {
         /** arrange */
@@ -21,6 +18,6 @@ class PdfBinaryOutputFormatterTest extends TestCase
         $output = $formatter->format($request);
 
         /** assert */
-        $this->assertEquals('1010', $output);
+        $this->assertContains('1010', $output);
     }
 }

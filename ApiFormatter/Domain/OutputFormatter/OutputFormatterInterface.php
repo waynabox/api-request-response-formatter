@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiFormatter\Domain\OutputFormatter;
+namespace Waynabox\ApiFormatter\Domain\OutputFormatter;
 
 interface OutputFormatterInterface
 {

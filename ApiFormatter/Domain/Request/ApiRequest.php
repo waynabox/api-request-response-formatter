@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiFormatter\Domain\Request;
+namespace Waynabox\ApiFormatter\Domain\Request;
 
 abstract class ApiRequest
 {

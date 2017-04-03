@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiFormatter\Domain\OutputFormatter;
+namespace Waynabox\ApiFormatter\Domain\OutputFormatter;
 
 class OutputFormatterRequest
 {
@@ -8,18 +8,24 @@ class OutputFormatterRequest
     private $output;
 
     /** @var mixed */
-    private $additionalData;
+    private $statusCode;
+
+    /** @var  mixed */
+    private $error;
 
     /**
      * OutputFormatterRequest constructor.
      * @param mixed $output
-     * @param mixed $additionalData
+     * @param mixed $statusCode
+     * @param mixed $error
      */
-    public function __construct($output, $additionalData = array())
+    public function __construct($output, $statusCode = null, $error = null)
     {
         $this->output = $output;
-        $this->additionalData = $additionalData;
+        $this->statusCode = $statusCode;
+        $this->error = $error;
     }
+
 
     /**
      * @return mixed
@@ -32,8 +38,16 @@ class OutputFormatterRequest
     /**
      * @return mixed
      */
-    public function additionalData()
+    public function error()
     {
-        return $this->additionalData;
+        return $this->error;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function statusCode()
+    {
+        return $this->statusCode;
     }
 }

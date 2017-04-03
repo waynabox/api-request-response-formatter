@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiFormatter\Domain\OutputFormatter\Exception;
+namespace Waynabox\ApiFormatter\Domain\OutputFormatter\Exception;
 
 class FormatTypeNotAllowedException extends \Exception
 {

@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jairo
- * Date: 9/03/17
- * Time: 16:14
- */
 
-namespace ApiFormatter\Domain\Response;
+namespace Waynabox\ApiFormatter\Domain\Response;
 
 class ApiResponseData implements ApiResponseDataInterface
 {

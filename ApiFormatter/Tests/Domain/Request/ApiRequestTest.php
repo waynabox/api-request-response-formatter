@@ -1,9 +1,9 @@
 <?php
 
-namespace ApiFormatter\Tests\Domain\Request;
+namespace Waynabox\ApiFormatter\Tests\Domain\Request;
 
-use ApiFormatter\Domain\Request\ApiRequest;
-use ApiFormatter\Domain\Request\ApiRequestBadException;
+use Waynabox\ApiFormatter\Domain\Request\ApiRequest;
+use Waynabox\ApiFormatter\Domain\Request\ApiRequestBadException;
 use PHPUnit\Framework\TestCase;
 
 

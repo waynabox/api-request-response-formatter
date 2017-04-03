@@ -1,12 +1,12 @@
 <?php
 
-namespace ApiFormatter\Domain\OutputFormatter;
+namespace Waynabox\ApiFormatter\Domain\OutputFormatter;
 
 
-use ApiFormatter\Infrastructure\OutputFormatter\JsonEncodedOutputFormatter;
-use ApiFormatter\Infrastructure\OutputFormatter\JsonOutputFormatter;
-use ApiFormatter\Infrastructure\OutputFormatter\PdfBinaryOutputFormatter;
-use ApiFormatter\Infrastructure\OutputFormatter\PlaintextOutputFormatter;
+use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\JsonEncodedOutputFormatter;
+use Waynabox\Infrastructure\OutputFormatter\JsonOutputFormatter;
+use Waynabox\Infrastructure\OutputFormatter\PdfBinaryOutputFormatter;
+use vaynabox\ApiFormatter\Infrastructure\OutputFormatter\PlaintextOutputFormatter;
 
 class OutputFormatterFactory
 {

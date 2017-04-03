@@ -1,9 +1,9 @@
 <?php
 
-namespace ApiFormatter\Domain\Response;
+namespace Waynabox\ApiFormatter\Domain\Response;
 
-use ApiFormatter\Domain\OutputFormatter\OutputFormatterInterface;
-use ApiFormatter\Domain\OutputFormatter\OutputFormatterRequest;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormatterInterface;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormatterRequest;
 
 class ApiResponse
 {
@@ -64,7 +64,8 @@ class ApiResponse
         return $this->outputFormatter->format(
             new OutputFormatterRequest(
                 $this->apiResponseData(),
-                $this->prepareAdditionalData()
+                $this->statusCode(),
+                $this->getErrors()
             )
         );
     }
@@ -94,30 +95,26 @@ class ApiResponse
     /**
      * @return array
      */
-    private function prepareAdditionalData()
+    private function getErrors()
     {
-        $additionalData = [
-            'status' => $this->statusCode(),
-            'error' => new \stdClass()
-        ];
+        $errors = new \stdClass();
         if (!$this->isResponseOk()) {
-            $additionalData = $this->addErrorsToResponse($additionalData);
+            $errors = $this->addErrorsToResponse();
         }
-        return $additionalData;
+        return $errors;
     }
 
     /**
-     * @param $data
      * @return array
      */
-    private function addErrorsToResponse($data): array
+    private function addErrorsToResponse(): array
     {
-        $data ['error'] = [
+        $data = [
             'message' => $this->mainErrorMessage
         ];
 
         foreach ($this->errorList as $errorKey => $errorData) {
-            $data['error']['errors'][$errorKey] = $errorData;
+            $data['errors'][$errorKey] = $errorData;
         }
 
         return $data;

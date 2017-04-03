@@ -6,9 +6,9 @@
  * Time: 11:58
  */
 
-namespace ApiFormatter\Tests\Domain\Response;
+namespace Waynabox\ApiFormatter\Tests\Domain\Response;
 
-use ApiFormatter\Domain\Response\ApiResponseData;
+use Waynabox\ApiFormatter\Domain\Response\ApiResponseData;
 use PHPUnit\Framework\TestCase;
 
 class ApiResponseDataTest extends TestCase

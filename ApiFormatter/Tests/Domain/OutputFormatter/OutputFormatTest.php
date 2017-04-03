@@ -1,8 +1,8 @@
 <?php
 
-namespace ApiFormatter\Tests\Domain\OutputFormatter;
+namespace Waynabox\ApiFormatter\Tests\Domain\OutputFormatter;
 
-use ApiFormatter\Domain\OutputFormatter\OutputFormat;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormat;
 use PHPUnit\Framework\TestCase;
 
 
@@ -26,7 +26,7 @@ class OutputFormatTest extends TestCase
     }
 
     /**
-     * @expectedException \ApiFormatter\Domain\OutputFormatter\Exception\FormatTypeNotAllowedException
+     * @expectedException \Waynabox\ApiFormatter\Domain\OutputFormatter\Exception\FormatTypeNotAllowedException
      */
     public function testBuildOnWrongTypeReturnsException()
     {

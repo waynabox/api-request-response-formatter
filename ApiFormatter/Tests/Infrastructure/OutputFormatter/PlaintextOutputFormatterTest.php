@@ -1,16 +1,13 @@
 <?php
 
-namespace ApiFormatter\Tests\Infrastructure\OutputFormatter;
+namespace Waynabox\ApiFormatter\Tests\Infrastructure\OutputFormatter;
 
-use ApiFormatter\Domain\OutputFormatter\OutputFormatterRequest;
-use ApiFormatter\Infrastructure\OutputFormatter\PlaintextOutputFormatter;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormatterRequest;
+use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\PlaintextOutputFormatter;
 use PHPUnit\Framework\TestCase;
 
 class PlaintextOutputFormatterTest extends TestCase
 {
-    /**
-     * @runInSeparateProcess
-     */
     public function testFormatterOutputsTheProperFormattedData()
     {
         /** arrange */
@@ -21,6 +18,6 @@ class PlaintextOutputFormatterTest extends TestCase
         $output = $formatter->format($request);
 
         /** assert */
-        $this->assertEquals('my plain text', $output);
+        $this->assertContains('my plain text', $output);
     }
 }

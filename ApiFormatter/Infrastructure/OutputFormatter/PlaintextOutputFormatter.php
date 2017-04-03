@@ -1,11 +1,11 @@
 <?php
 
-namespace ApiFormatter\Infrastructure\OutputFormatter;
+namespace vApiFormatter\Infrastructure\OutputFormatter;
 
-use ApiFormatter\Domain\OutputFormatter\OutputFormatterInterface;
-use ApiFormatter\Domain\OutputFormatter\OutputFormatterRequest;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormatterInterface;
+use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormatterRequest;
 
-class PlaintextOutputFormatter implements OutputFormatterInterface
+class PlaintextOutputFormatter extends AbstractOutputFormatter implements OutputFormatterInterface
 {
     /**
      * @param OutputFormatterRequest $request
@@ -14,10 +14,14 @@ class PlaintextOutputFormatter implements OutputFormatterInterface
      */
     public function format(OutputFormatterRequest $request): string
     {
-        header('Content-type: text');
-        return $request->output();
+        return $this->createResponse($request->statusCode(), $request->output());
     }
-}
-{
 
+    /**
+     * @return string
+     */
+    protected function getContentType(): string
+    {
+        return 'plain/text';
+    }
 }

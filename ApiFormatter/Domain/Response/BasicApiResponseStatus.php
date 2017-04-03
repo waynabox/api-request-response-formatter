@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiFormatter\Domain\Response;
+namespace Waynabox\ApiFormatter\Domain\Response;
 
 class BasicApiResponseStatus extends ApiResponseStatus
 {
