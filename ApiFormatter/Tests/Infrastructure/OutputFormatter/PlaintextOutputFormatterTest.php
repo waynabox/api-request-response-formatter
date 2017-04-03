@@ -18,6 +18,6 @@ class PlaintextOutputFormatterTest extends TestCase
         $output = $formatter->format($request);
 
         /** assert */
-        $this->assertContains('my plain text', $output);
+        $this->assertContains('my plain text', $output->getContent());
     }
 }

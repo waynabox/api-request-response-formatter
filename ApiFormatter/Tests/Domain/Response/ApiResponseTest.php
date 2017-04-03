@@ -38,7 +38,7 @@ class ApiResponseTest extends TestCase
         $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::JSON));
         $response = new ApiResponse($status, $data, $mainErrorMessage, $formatter);
 
-        $this->assertContains($jsonResponse, $response->output());
+        $this->assertContains($jsonResponse, $response->output()->getContent());
     }
 
     public function testApiResponseOKStatusWithMainErrorMessageLaunchAnException()
@@ -76,7 +76,7 @@ class ApiResponseTest extends TestCase
         $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::JSON));
         $response = new ApiResponse($status, $data, $mainErrorMessage, $formatter);
 
-        $this->assertContains($jsonResponse, $response->output());
+        $this->assertContains($jsonResponse, $response->output()->getContent());
     }
 
     public function testApiResponseBadRequestStatusWithMultipleErrors()
@@ -109,7 +109,7 @@ class ApiResponseTest extends TestCase
         $response->addError($error1Name, $error1);
         $response->addError($error2Name, $error2);
 
-        $this->assertContains($jsonResponse, $response->output());
+        $this->assertContains($jsonResponse, $response->output()->getContent());
     }
 
     public function testApiResponseOkStatusWithMainErrorMessageLaunchException()

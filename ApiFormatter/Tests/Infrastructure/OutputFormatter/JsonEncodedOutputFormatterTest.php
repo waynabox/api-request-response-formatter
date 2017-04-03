@@ -18,7 +18,7 @@ class JsonEncodedOutputFormatterTest extends TestCase
         $output = $formatter->format($request);
 
         /** assert */
-        $this->assertContains('{"status":200,"data":{"param1":"value 1","param2":"value 2"},"error":{}}', $output);
+        $this->assertContains('{"status":200,"data":{"param1":"value 1","param2":"value 2"},"error":{}}', $output->getContent());
     }
 
     public function testFormatterOutputsWithNoData()
@@ -31,6 +31,6 @@ class JsonEncodedOutputFormatterTest extends TestCase
         $output = $formatter->format($request);
 
         /** assert */
-        $this->assertContains('{"status":200,"data":{},"error":{}}', $output);
+        $this->assertContains('{"status":200,"data":{},"error":{}}', $output->getContent());
     }
 }

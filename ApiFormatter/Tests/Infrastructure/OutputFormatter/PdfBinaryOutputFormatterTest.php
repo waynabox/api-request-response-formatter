@@ -18,6 +18,6 @@ class PdfBinaryOutputFormatterTest extends TestCase
         $output = $formatter->format($request);
 
         /** assert */
-        $this->assertContains('1010', $output);
+        $this->assertContains('1010', $output->getContent());
     }
 }
