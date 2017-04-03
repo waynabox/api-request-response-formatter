@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Waynabox\\ApiFormatter\\": "Waynabox/ApiFormatter/"
+            "Waynabox\\ApiFormatter\\": "ApiFormatter/"
         }
     },
     "minimum-stability": "stable",

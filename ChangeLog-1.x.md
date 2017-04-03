@@ -1,4 +1,8 @@
 # Changes in Waynabox Api Formatter 1.x.x
+
+## [1.1.4]
+* unit test fixing
+
 ## [1.1.3]
 * Symfony responses on Infrastructure layer
 

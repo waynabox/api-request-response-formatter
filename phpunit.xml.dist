@@ -21,7 +21,7 @@
             <directory>ApiFormatter/Domain</directory>
             <directory>ApiFormatter/Infrastructure</directory>
             <exclude>
-                <directory>AppiFormatter/Tests</directory>
+                <directory>ApiFormatter/Tests</directory>
             </exclude>
         </whitelist>
     </filter>

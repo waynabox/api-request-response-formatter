@@ -4,9 +4,10 @@ namespace Waynabox\ApiFormatter\Domain\OutputFormatter;
 
 
 use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\JsonEncodedOutputFormatter;
-use Waynabox\Infrastructure\OutputFormatter\JsonOutputFormatter;
-use Waynabox\Infrastructure\OutputFormatter\PdfBinaryOutputFormatter;
-use vaynabox\ApiFormatter\Infrastructure\OutputFormatter\PlaintextOutputFormatter;
+use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\JsonOutputFormatter;
+use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\PdfBinaryOutputFormatter;
+use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\PlaintextOutputFormatter;
+
 
 class OutputFormatterFactory
 {
