@@ -2,6 +2,8 @@
 
 namespace Waynabox\ApiFormatter\Tests\Domain\OutputFormatter;
 
+use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\HtmlOutputFormatter;
+use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\JsonEncodedOutputFormatter;
 use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\PdfBinaryOutputFormatter;
 use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\JsonOutputFormatter;
 use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormat;
@@ -14,12 +16,11 @@ class OutputFormatterFactoryTest extends TestCase
 {
     public function testFactoryWorksProperlyWithEachSingleFormatterCreation()
     {
-        $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::PLAIN_TEXT));
-        $this->assertInstanceOf(PlaintextOutputFormatter::class, $formatter);
-        $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::JSON));
-        $this->assertInstanceOf(JsonOutputFormatter::class, $formatter);
-        $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::BINARY_PDF));
-        $this->assertInstanceOf(PdfBinaryOutputFormatter::class, $formatter);
+        foreach (OutputFormat::ALLOWED as $outputFormatId) {
+            $formatter = OutputFormatterFactory::build(OutputFormat::build($outputFormatId));
+            $instanceNameToTest = $this->getInstanceNameToTest($outputFormatId);
+            $this->assertInstanceOf($instanceNameToTest, $formatter);
+        }
     }
 
     /**
@@ -42,5 +43,27 @@ class OutputFormatterFactoryTest extends TestCase
          * act
          */
         OutputFormatterFactory::build($outputFormatMock);
+    }
+
+    private function getInstanceNameToTest($outputFormatId)
+    {
+        switch ($outputFormatId) {
+            case OutputFormat::PLAIN_TEXT:
+                return PlaintextOutputFormatter::class;
+                break;
+            case OutputFormat::JSON:
+                return JsonOutputFormatter::class;
+                break;
+            case OutputFormat::BINARY_PDF:
+                return PdfBinaryOutputFormatter::class;
+                break;
+            case OutputFormat::JSON_ENCODED:
+                return JsonEncodedOutputFormatter::class;
+                break;
+            case OutputFormat::HTML:
+                return HtmlOutputFormatter::class;
+                break;
+        }
+        throw new \Exception("Output formatter with id $outputFormatId is pending to test on factory test");
     }
 }

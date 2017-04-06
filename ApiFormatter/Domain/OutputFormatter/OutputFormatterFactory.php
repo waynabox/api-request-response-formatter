@@ -3,6 +3,7 @@
 namespace Waynabox\ApiFormatter\Domain\OutputFormatter;
 
 
+use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\HtmlOutputFormatter;
 use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\JsonEncodedOutputFormatter;
 use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\JsonOutputFormatter;
 use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\PdfBinaryOutputFormatter;
@@ -22,6 +23,8 @@ class OutputFormatterFactory
                 return new PdfBinaryOutputFormatter();
             case OutputFormat::JSON_ENCODED:
                 return new JsonEncodedOutputFormatter();
+            case OutputFormat::HTML:
+                return new HtmlOutputFormatter();
             default:
                 throw new \Exception("Not implemented on factory yet");
         }
