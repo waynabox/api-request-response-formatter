@@ -15,6 +15,17 @@ return ApiResponseFactory::buildAcceptedResponse(
 //outputs '{"status":200,"data":{"param1":"value 1","param2":"value 2"},"error":{}}'
 ```
 
+##### OutputFormat::HTML
+Use this to output a string as plain text on browser. It puts as header 'Content-type: text/html' 
+```php
+$data = '<html>hello</html>';
+return ApiResponseFactory::buildAcceptedResponse(
+            $data,
+            OutputFormat::HTML
+        )->output();
+//outputs '<html>hello</html>'
+```
+
 ##### OutputFormat::PLAIN_TEXT
 Use this to output a string as plain text on browser. It puts as header 'Content-type: text' 
 ```php

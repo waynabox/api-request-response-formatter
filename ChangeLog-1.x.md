@@ -1,5 +1,8 @@
 # Changes in Waynabox Api Formatter 1.x.x
 
+## [1.1.6]
+* New Output format (html)
+
 ## [1.1.5]
 * bad casting getting response bug
 
