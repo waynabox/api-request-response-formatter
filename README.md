@@ -39,7 +39,7 @@ A bundle of tools to handle Waynabox API request and responses.
 ```php
  public function helloAction(Request $request)
  {
-        $response = ApiResponseFactory::buildAcceptedResponse('my text on response');
+        $response = ApiResponseFactory::buildAcceptedResponse('my text on response data section');
         return $response->output();
  }
 ```
@@ -48,7 +48,7 @@ A bundle of tools to handle Waynabox API request and responses.
 ```php
  public function helloAction(Request $request)
  {
-        $response = ApiResponseFactory::buildCreatedResponse('my text on response');
+        $response = ApiResponseFactory::buildCreatedResponse('my text on response data section');
         return $response->output();
  }
 ```
@@ -57,7 +57,7 @@ A bundle of tools to handle Waynabox API request and responses.
 ```php
  public function helloAction(Request $request)
  {
-        $response = ApiResponseFactory::buildBadRequestResponse('my text on response');
+        $response = ApiResponseFactory::buildBadRequestResponse('my text on response error section');
         return $response->output();
  }
 ```
@@ -66,7 +66,7 @@ A bundle of tools to handle Waynabox API request and responses.
 ```php
  public function helloAction(Request $request)
  {
-        $response = ApiResponseFactory::buildAuthenticationFailedResponse('my text on response');
+        $response = ApiResponseFactory::buildAuthenticationFailedResponse('my text on response error section');
         return $response->output();
  }
 ```
@@ -75,7 +75,7 @@ A bundle of tools to handle Waynabox API request and responses.
 ```php
  public function helloAction(Request $request)
  {
-        $response = ApiResponseFactory::buildNotFoundResponse('my text on response');
+        $response = ApiResponseFactory::buildNotFoundResponse('my text on response error section');
         return $response->output();
  }
 ```
@@ -84,7 +84,7 @@ A bundle of tools to handle Waynabox API request and responses.
 ```php
  public function helloAction(Request $request)
  {
-        $response = ApiResponseFactory::buildServerErrorResponse('my text on response');
+        $response = ApiResponseFactory::buildServerErrorResponse('my text on response error section');
         return $response->output();
  }
 ```
