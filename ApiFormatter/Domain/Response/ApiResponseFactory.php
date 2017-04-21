@@ -30,23 +30,6 @@ class ApiResponseFactory
      * @param int $formatType
      * @return ApiResponse
      */
-    public static function buildNotFoundResponse(
-        $responseData,
-        $formatType = OutputFormat::JSON_STRING
-    ): ApiResponse {
-        return new ApiResponse(
-            new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_NOT_FOUND_CODE),
-            new ApiResponseData($responseData),
-            '',
-            self::buildOutputFormatter($formatType)
-        );
-    }
-
-    /**
-     * @param $responseData
-     * @param int $formatType
-     * @return ApiResponse
-     */
     public static function buildAcceptedResponse(
         $responseData,
         $formatType = OutputFormat::JSON_STRING
@@ -104,6 +87,23 @@ class ApiResponseFactory
     ): ApiResponse {
         return new ApiResponse(
             new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_SERVER_ERROR_CODE),
+            new ApiResponseData(),
+            $errorMessage,
+            self::buildOutputFormatter($formatType)
+        );
+    }
+
+    /**
+     * @param string $errorMessage
+     * @param int $formatType
+     * @return ApiResponse
+     */
+    public static function buildNotFoundResponse(
+        string $errorMessage,
+        $formatType = OutputFormat::JSON_STRING
+    ): ApiResponse {
+        return new ApiResponse(
+            new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_NOT_FOUND_CODE),
             new ApiResponseData(),
             $errorMessage,
             self::buildOutputFormatter($formatType)
