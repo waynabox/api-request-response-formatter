@@ -1,5 +1,8 @@
 # Changes in Waynabox Api Formatter 1.x.x
 
+## [1.2.2]
+* New response types: Server Error (500)
+
 ## [1.2.1]
 * JSON_ENCODED constant renamed to JSON_STRING to a better understanding
 * New response types: Not Found (404) and Created (201)

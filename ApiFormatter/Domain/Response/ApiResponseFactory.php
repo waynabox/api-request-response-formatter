@@ -94,6 +94,23 @@ class ApiResponseFactory
     }
 
     /**
+     * @param string $errorMessage
+     * @param int $formatType
+     * @return ApiResponse
+     */
+    public static function buildServerErrorResponse(
+        string $errorMessage,
+        $formatType = OutputFormat::JSON_STRING
+    ): ApiResponse {
+        return new ApiResponse(
+            new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_SERVER_ERROR_CODE),
+            new ApiResponseData(),
+            $errorMessage,
+            self::buildOutputFormatter($formatType)
+        );
+    }
+
+    /**
      * @param $formatType
      * @return OutputFormatterInterface
      */

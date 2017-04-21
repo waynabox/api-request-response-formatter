@@ -58,4 +58,13 @@ class ApiResponseFactoryTest extends TestCase
         /** assert */
         $this->assertEquals(BasicApiResponseStatus::STATUS_CREATED_CODE, $response->statusCode());
     }
+
+    public function testFactoryReturnsServerErrorResponse()
+    {
+        /** act */
+        $response = ApiResponseFactory::buildServerErrorResponse('Created successfully');
+
+        /** assert */
+        $this->assertEquals(BasicApiResponseStatus::STATUS_SERVER_ERROR_CODE, $response->statusCode());
+    }
 }
