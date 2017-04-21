@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormatterInterface;
 use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormatterRequest;
 
-class JsonEncodedOutputFormatter extends AbstractOutputFormatter implements OutputFormatterInterface
+class JsonStringOutputFormatter extends AbstractOutputFormatter implements OutputFormatterInterface
 {
     /**
      * @param OutputFormatterRequest $request
@@ -33,6 +33,7 @@ class JsonEncodedOutputFormatter extends AbstractOutputFormatter implements Outp
         $jsonResponse['status'] = $request->statusCode();
         $jsonResponse['data'] = json_decode($output);
         $jsonResponse['error'] = $request->error();
+        $jsonResponse['date'] = date("Y-m-d H:i:s");
         return json_encode($jsonResponse);
     }
 

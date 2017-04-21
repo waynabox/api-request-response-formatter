@@ -24,21 +24,17 @@ class ApiResponseTest extends TestCase
         $data = new ApiResponseDataMock($param1, $param2, $param3);
 
         $mainErrorMessage = '';
-        $jsonResponse = json_encode([
-            'status' => BasicApiResponseStatus::STATUS_OK_CODE,
-            'data' => [
-                $param1Name => $param1,
-                $param2Name => $param2,
-                $param3Name => $param3,
-            ],
-            'error' => new \StdClass()
-        ]);
 
         $status = new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_OK_CODE);
         $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::JSON));
         $response = new ApiResponse($status, $data, $mainErrorMessage, $formatter);
 
-        $this->assertContains($jsonResponse, $response->output()->getContent());
+        $decodedResponse = json_decode($response->output()->getContent(), true);
+        $this->assertEquals(BasicApiResponseStatus::STATUS_OK_CODE, $decodedResponse['status']);
+        $this->assertEquals([$param1Name => $param1, $param2Name => $param2, $param3Name => $param3],
+            $decodedResponse['data']);
+        $this->assertEmpty($decodedResponse['error']);
+        $this->assertNotFalse(strtotime($decodedResponse['date']));
     }
 
     public function testApiResponseOKStatusWithMainErrorMessageLaunchAnException()
@@ -70,13 +66,17 @@ class ApiResponseTest extends TestCase
         $data = new ApiResponseDataMock($param1, $param2, $param3);
 
         $mainErrorMessage = 'Bad paramenters request';
-        $jsonResponse = '{"status":400,"data":{"param1":"test_data_1","param2":{"test_data_2":"test_data_2"},"paramN":"test_data_3"},"error":{"message":"Bad paramenters request"}}';
 
         $status = new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE);
         $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::JSON));
         $response = new ApiResponse($status, $data, $mainErrorMessage, $formatter);
 
-        $this->assertContains($jsonResponse, $response->output()->getContent());
+        $decodedResponse = json_decode($response->output()->getContent(), true);
+        $this->assertEquals(BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE, $decodedResponse['status']);
+        $this->assertEquals([$param1Name => $param1, $param2Name => $param2, $param3Name => $param3],
+            $decodedResponse['data']);
+        $this->assertEquals('Bad paramenters request', $decodedResponse['error']['message']);
+        $this->assertNotFalse(strtotime($decodedResponse['date']));
     }
 
     public function testApiResponseBadRequestStatusWithMultipleErrors()
@@ -101,7 +101,6 @@ class ApiResponseTest extends TestCase
         $error2 = [
             'error_message' => 'message'
         ];
-        $jsonResponse = '{"status":400,"data":{"param1":"test_data_1","param2":{"test_data_2":"test_data_2"},"paramN":"test_data_3"},"error":{"message":"Bad parameters request","errors":{"error1":{"error_field":"field","error_message":"message"},"error2":{"error_message":"message"}}}}';
 
         $status = new BasicApiResponseStatus(BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE);
         $formatter = OutputFormatterFactory::build(OutputFormat::build(OutputFormat::JSON));
@@ -109,7 +108,13 @@ class ApiResponseTest extends TestCase
         $response->addError($error1Name, $error1);
         $response->addError($error2Name, $error2);
 
-        $this->assertContains($jsonResponse, $response->output()->getContent());
+        $decodedResponse = json_decode($response->output()->getContent(), true);
+        $this->assertEquals(BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE, $decodedResponse['status']);
+        $this->assertEquals([$param1Name => $param1, $param2Name => $param2, $param3Name => $param3],
+            $decodedResponse['data']);
+        $this->assertEquals($mainErrorMessage, $decodedResponse['error']['message']);
+        $this->assertEquals(['error1' => $error1, 'error2' => $error2], $decodedResponse['error']['errors']);
+        $this->assertNotFalse(strtotime($decodedResponse['date']));
     }
 
     public function testApiResponseOkStatusWithMainErrorMessageLaunchException()

@@ -40,4 +40,22 @@ class ApiResponseFactoryTest extends TestCase
         /** assert */
         $this->assertEquals(BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE, $response->statusCode());
     }
+
+    public function testFactoryReturnsNotFoundResponse()
+    {
+        /** act */
+        $response = ApiResponseFactory::buildNotFoundResponse('not found');
+
+        /** assert */
+        $this->assertEquals(BasicApiResponseStatus::STATUS_NOT_FOUND_CODE, $response->statusCode());
+    }
+
+    public function testFactoryReturnsCreatedResponse()
+    {
+        /** act */
+        $response = ApiResponseFactory::buildCreatedResponse('Created successfully');
+
+        /** assert */
+        $this->assertEquals(BasicApiResponseStatus::STATUS_CREATED_CODE, $response->statusCode());
+    }
 }

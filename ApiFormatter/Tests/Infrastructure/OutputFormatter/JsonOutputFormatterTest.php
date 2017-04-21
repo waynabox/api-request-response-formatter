@@ -16,8 +16,12 @@ class JsonOutputFormatterTest extends TestCase
 
         /** act */
         $output = $formatter->format($request);
+        $decoded = json_decode($output->getContent(), true);
 
         /** assert */
-        $this->assertContains('{"status":200,"data":{"param1":"value 1","param2":"value 2"},"error":{}}', $output->getContent());
+        $this->assertEquals(200, $decoded['status']);
+        $this->assertEmpty($decoded['error']);
+        $this->assertNotFalse(strtotime($decoded['date']));
+        $this->assertEquals(['param1' => 'value 1', 'param2' => 'value 2'], $decoded['data']);
     }
 }

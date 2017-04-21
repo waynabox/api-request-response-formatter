@@ -9,14 +9,14 @@ class OutputFormat
     const PLAIN_TEXT = 1;
     const JSON = 2;
     const BINARY_PDF = 3;
-    const JSON_ENCODED = 4;
+    const JSON_STRING = 4;
     const HTML = 5;
 
     const ALLOWED = [
         self::PLAIN_TEXT,
         self::JSON,
         self::BINARY_PDF,
-        self::JSON_ENCODED,
+        self::JSON_STRING,
         self::HTML
     ];
 

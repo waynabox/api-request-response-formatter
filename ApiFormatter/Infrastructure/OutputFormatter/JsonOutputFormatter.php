@@ -30,6 +30,7 @@ class JsonOutputFormatter extends AbstractOutputFormatter implements OutputForma
         $jsonResponse['status'] = $request->statusCode();
         $jsonResponse['data'] = $request->output();
         $jsonResponse['error'] = $request->error();
+        $jsonResponse['date'] = date("Y-m-d H:i:s");
         return json_encode($jsonResponse);
     }
 

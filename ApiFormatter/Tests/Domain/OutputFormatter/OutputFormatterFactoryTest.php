@@ -3,7 +3,7 @@
 namespace Waynabox\ApiFormatter\Tests\Domain\OutputFormatter;
 
 use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\HtmlOutputFormatter;
-use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\JsonEncodedOutputFormatter;
+use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\JsonStringOutputFormatter;
 use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\PdfBinaryOutputFormatter;
 use Waynabox\ApiFormatter\Infrastructure\OutputFormatter\JsonOutputFormatter;
 use Waynabox\ApiFormatter\Domain\OutputFormatter\OutputFormat;
@@ -57,8 +57,8 @@ class OutputFormatterFactoryTest extends TestCase
             case OutputFormat::BINARY_PDF:
                 return PdfBinaryOutputFormatter::class;
                 break;
-            case OutputFormat::JSON_ENCODED:
-                return JsonEncodedOutputFormatter::class;
+            case OutputFormat::JSON_STRING:
+                return JsonStringOutputFormatter::class;
                 break;
             case OutputFormat::HTML:
                 return HtmlOutputFormatter::class;
