@@ -5,7 +5,7 @@ A bundle of tools to handle Waynabox API request and responses.
 * [How to create a Waynabox API Response](#1)
 * [API Response types](#2)
     * [Returning an accepted response (Code 200)](#2.1)
-    * [eturning a created response (Code 201)](#2.2)
+    * [Returning a created response (Code 201)](#2.2)
     * [Returning a bad request response (Code 400)](#2.3)
     * [Returning an authentication failed response (Code 401)](#2.4)
     * [Returning a not found response (Code 404)](#2.5)
