@@ -27,7 +27,7 @@ class JsonOutputFormatter extends AbstractOutputFormatter implements OutputForma
     private function prepareData(OutputFormatterRequest $request): string
     {
         $jsonResponse = [];
-        $jsonResponse['status'] = $request->statusCode();
+        $jsonResponse['status'] = $request->status();
         $jsonResponse['data'] = $request->output();
         $jsonResponse['error'] = $request->error();
         $jsonResponse['date'] = date("Y-m-d H:i:s");

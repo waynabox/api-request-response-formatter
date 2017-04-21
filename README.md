@@ -93,13 +93,13 @@ A bundle of tools to handle Waynabox API request and responses.
 
 ##### <a name="3.1"></a>OutputFormat::JSON_STRING (default value)
 Use this to output a previously generated json as string on browser. It puts as header 'Content-type: json'
-This option will add additional data on json response for status, error response and timestamp.
+This option will add additional data on json response for status (OK/KO), error response and timestamp.
 ```php
 $data = '{"param1":"value 1","param2":"value 2"}';
 return ApiResponseFactory::buildAcceptedResponse(
             $data
         )->output();
-//outputs '{"status":200,"data":{"param1":"value 1","param2":"value 2"},"error":{},"date":"2017-01-01 01:01:01"}'
+//outputs '{"status":"OK","data":{"param1":"value 1","param2":"value 2"},"error":{},"date":"2017-01-01 01:01:01"}'
 ```
 
 ##### <a name="3.2"></a>OutputFormat::HTML
@@ -127,14 +127,14 @@ return ApiResponseFactory::buildAcceptedResponse(
 ##### <a name="3.4"></a>OutputFormat::JSON
 Use this to output an array with data as a json encoded on browser. It puts as header 'Content-type: json'.
 
-This option will add additional data on json response for status, error response and timestamp
+This option will add additional data on json response for status (OK/KO), error response and timestamp
 ```php
 $data = ['param1' => 'value 1', 'param2' => 'value 2'];
 return ApiResponseFactory::buildAcceptedResponse(
             $data,
             OutputFormat::JSON
         )->output();
-//outputs '{"status":200,"data":{"param1":"value 1","param2":"value 2"},"error":{},"date":"2017-01-01 01:01:01"}'
+//outputs '{"status":"OK","data":{"param1":"value 1","param2":"value 2"},"error":{},"date":"2017-01-01 01:01:01"}'
 ```
 
 ##### <a name="3.5"></a>OutputFormat::BINARY_PDF

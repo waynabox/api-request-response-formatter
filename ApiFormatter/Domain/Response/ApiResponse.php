@@ -64,10 +64,21 @@ class ApiResponse
         return $this->outputFormatter->format(
             new OutputFormatterRequest(
                 $this->apiResponseData(),
+                $this->outputStatus(),
                 $this->statusCode(),
                 $this->getErrors()
             )
         );
+    }
+
+    /**
+     * @return string
+     */
+    private function outputStatus(){
+        if($this->status->isResponseStatusOK()){
+            return 'OK';
+        }
+        return 'KO';
     }
 
     /**

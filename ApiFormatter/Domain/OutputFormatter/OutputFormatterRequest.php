@@ -7,6 +7,9 @@ class OutputFormatterRequest
     /** @var mixed */
     private $output;
 
+    /** @var string */
+    private $status;
+
     /** @var mixed */
     private $statusCode;
 
@@ -16,14 +19,16 @@ class OutputFormatterRequest
     /**
      * OutputFormatterRequest constructor.
      * @param mixed $output
+     * @param string $status
      * @param mixed $statusCode
      * @param mixed $error
      */
-    public function __construct($output, $statusCode = null, $error = null)
+    public function __construct($output, $status = null, $statusCode = null, $error = null)
     {
         $this->output = $output;
         $this->statusCode = $statusCode;
         $this->error = $error;
+        $this->status = $status;
     }
 
 
@@ -49,5 +54,13 @@ class OutputFormatterRequest
     public function statusCode()
     {
         return $this->statusCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function status(): string
+    {
+        return $this->status;
     }
 }

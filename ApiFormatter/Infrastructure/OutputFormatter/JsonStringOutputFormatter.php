@@ -30,7 +30,7 @@ class JsonStringOutputFormatter extends AbstractOutputFormatter implements Outpu
             $output = '{}';
         }
         $jsonResponse = [];
-        $jsonResponse['status'] = $request->statusCode();
+        $jsonResponse['status'] = $request->status();
         $jsonResponse['data'] = json_decode($output);
         $jsonResponse['error'] = $request->error();
         $jsonResponse['date'] = date("Y-m-d H:i:s");

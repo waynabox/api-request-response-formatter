@@ -11,14 +11,14 @@ class JsonStringOutputFormatterTest extends TestCase
     public function testFormatterOutputsTheProperFormattedData()
     {
         /** arrange */
-        $request = new OutputFormatterRequest('{"param1":"value 1","param2":"value 2"}', 200, new \StdClass());
+        $request = new OutputFormatterRequest('{"param1":"value 1","param2":"value 2"}', 'OK', 200, new \StdClass());
         $formatter = new JsonStringOutputFormatter($request);
 
         /** act */
         $output = $formatter->format($request);
         $decoded = json_decode($output->getContent(), true);
         /** assert */
-        $this->assertEquals(200, $decoded['status']);
+        $this->assertEquals('OK', $decoded['status']);
         $this->assertEmpty($decoded['error']);
         $this->assertNotFalse(strtotime($decoded['date']));
         $this->assertEquals(['param1' => 'value 1', 'param2' => 'value 2'], $decoded['data']);
@@ -28,7 +28,7 @@ class JsonStringOutputFormatterTest extends TestCase
     public function testFormatterOutputsWithNoData()
     {
         /** arrange */
-        $request = new OutputFormatterRequest('', 200, new \StdClass());
+        $request = new OutputFormatterRequest('', 'OK', 200, new \StdClass());
         $formatter = new JsonStringOutputFormatter($request);
 
         /** act */
@@ -36,7 +36,7 @@ class JsonStringOutputFormatterTest extends TestCase
         $decoded = json_decode($output->getContent(), true);
 
         /** assert */
-        $this->assertEquals(200, $decoded['status']);
+        $this->assertEquals('OK', $decoded['status']);
         $this->assertEmpty($decoded['error']);
         $this->assertNotFalse(strtotime($decoded['date']));
         $this->assertEmpty($decoded['data']);

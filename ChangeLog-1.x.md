@@ -1,5 +1,8 @@
 # Changes in Waynabox Api Formatter 1.x.x
 
+## [1.3.0]
+* OK/KO on status field for responses
+
 ## [1.2.2]
 * New response types: Server Error (500)
 

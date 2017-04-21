@@ -30,7 +30,7 @@ class ApiResponseTest extends TestCase
         $response = new ApiResponse($status, $data, $mainErrorMessage, $formatter);
 
         $decodedResponse = json_decode($response->output()->getContent(), true);
-        $this->assertEquals(BasicApiResponseStatus::STATUS_OK_CODE, $decodedResponse['status']);
+        $this->assertEquals('OK', $decodedResponse['status']);
         $this->assertEquals([$param1Name => $param1, $param2Name => $param2, $param3Name => $param3],
             $decodedResponse['data']);
         $this->assertEmpty($decodedResponse['error']);
@@ -72,7 +72,7 @@ class ApiResponseTest extends TestCase
         $response = new ApiResponse($status, $data, $mainErrorMessage, $formatter);
 
         $decodedResponse = json_decode($response->output()->getContent(), true);
-        $this->assertEquals(BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE, $decodedResponse['status']);
+        $this->assertEquals('KO', $decodedResponse['status']);
         $this->assertEquals([$param1Name => $param1, $param2Name => $param2, $param3Name => $param3],
             $decodedResponse['data']);
         $this->assertEquals('Bad paramenters request', $decodedResponse['error']['message']);
@@ -109,7 +109,7 @@ class ApiResponseTest extends TestCase
         $response->addError($error2Name, $error2);
 
         $decodedResponse = json_decode($response->output()->getContent(), true);
-        $this->assertEquals(BasicApiResponseStatus::STATUS_BAD_REQUEST_CODE, $decodedResponse['status']);
+        $this->assertEquals('KO', $decodedResponse['status']);
         $this->assertEquals([$param1Name => $param1, $param2Name => $param2, $param3Name => $param3],
             $decodedResponse['data']);
         $this->assertEquals($mainErrorMessage, $decodedResponse['error']['message']);
