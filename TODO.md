@@ -1,2 +1,2 @@
 * validate inputs formats on response creations
-* timestamp on responses as additional information
+* json string and json output formats should be unified on the same output formatter (checking if array or string)
